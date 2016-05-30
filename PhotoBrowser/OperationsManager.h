@@ -4,29 +4,46 @@
 #import <UIKit/UIKit.h>
 
 #import "ImageOperation.h"
+#import "OperationHistory.h"
+#import "OperationPosition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^OperationPositionCompletionBlock) (OperationPosition *operationPosition, NSError * _Nullable error);
+
+typedef void (^OperationHistoryCompletionBlock) (OperationHistory *history,
+                                                 OperationPosition *operationPosition, NSError * _Nullable error);
+
 @interface OperationsManager : NSObject
 
-- (instancetype)initWithImage:(UIImage *)originalImage
-         cachedImagesInterval:(NSUInteger)cachedImagesInterval;
+- (void)positionInVersion:(NSUInteger)version
+  operationsHistory:(OperationHistory *)operationsHistory
+     uponCompletion:(OperationPositionCompletionBlock)completionBlock;
 
-- (void)performOperationsOnImage:(NSArray<id<ImageOperation>> *)operations;
+- (void)undo:(OperationHistory *)operationsHistory
+operationPosition:(OperationPosition *)currentPosition
+    uponCompletion:(OperationPositionCompletionBlock)completionBlock;
 
-- (void)goToVersion:(NSUInteger)version;
+- (void)redo:(OperationHistory *)operationsHistory
+operationPosition:(OperationPosition *)currentPosition
+uponCompletion:(OperationPositionCompletionBlock)completionBlock;
 
-- (void)undo;
-- (void)redo;
+- (BOOL)isUndoAvailable:(OperationHistory *)operationsHistory
+      operationPosition:(OperationPosition *)position;
 
-- (BOOL)isUndoAvailable;
-- (BOOL)isRedoAvailable;
+- (BOOL)isRedoAvailable:(OperationHistory *)operationsHistory
+      operationPosition:(OperationPosition *)position;
 
-@property (readonly, nonatomic) UIImage *currentImage;
+/// Create a new OperationHistory with a new (possibly expanded) cache.
+// overites from position onwards
+- (void)addOperations:(NSArray<id<ImageOperation>> *)operations
+            toHistory:(OperationHistory *)operationHistory
+           atPosition:(OperationPosition *)position
+       uponCompletion:(OperationHistoryCompletionBlock)completionBlock;
 
 @property (nonatomic) NSUInteger capacity;
 
-- (NSUInteger)numberOfCommonOperationsFromStart:(NSArray<id<ImageOperation>> *)otherOperations;
+@property (nonatomic) NSUInteger cachedImagesInterval;
 
 @end
 

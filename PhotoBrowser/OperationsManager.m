@@ -11,19 +11,43 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OperationsManager()
 
-@property (readonly, nonatomic) NSArray<id<ImageOperation>> *operations;
-@property (readonly, nonatomic) NSArray<UIImage *> *cachedImages;
-
-@property (nonatomic) NSUInteger currentOperationIndex;
-
-@property (nonatomic) UIImage *currentImage;
-@property (readonly, nonatomic) UIImage *originalImage;
-
-@property (readonly, nonatomic) NSUInteger cachedImagesInterval;
-
 @end
 
 @implementation OperationsManager
+
+- (void)undo:(OperationHistory *)operationsHistory
+operationPosition:(OperationPosition *)currentPosition
+uponCompletion:(OperationPositionCompletionBlock)completionBlock {
+  id<ImageOperation> operation = [operationsHistory at:currentPosition.operationIndex];
+  __block id<OperationInput> input;
+  
+  if(operation.isUndoAvailable) {
+      [operation performUndo:currentPosition.inputAfterOperation
+                      uponCompletion:^(id<OperationInput> inputAfterOperation, NSError * _Nullable error) {
+                        input = inputAfterOperation;
+      }];
+  } else {
+    NSUInteger cachedInputIndex = (currentPosition.operationIndex / self.cachedImagesInterval);
+    input = [operationsHistory cachedInputAt:cachedInputIndex];
+    
+    for (;cachedInputIndex < currentPosition.operationIndex - 1; ++cachedInputIndex) {
+      operation = [operationsHistory at:cachedInputIndex];
+      
+      [operation perform:input
+          uponCompletion:^(id<OperationInput> inputAfterOperation, NSError * _Nullable error) {
+            input = inputAfterOperation;
+          }];
+    }
+  }
+  
+  OperationPosition *position = [[OperationPosition alloc]
+                                 initWithIndex:currentPosition.operationIndex - 1
+                                 input:input];
+  
+  NSError *error;
+  
+  completionBlock(position, error);
+}
 
 @end
 

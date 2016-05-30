@@ -5,11 +5,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OperationMetadata : NSObject
+@interface VersionMetadata : NSObject
 
-@property (readonly, nonatomic) NSUInteger *operationNumber;
 @property (readonly, nonatomic) NSString *operationName;
-@property (readonly, nonatomic) UIImage *imageAfterOperationThumbnail;
 
 @end
 

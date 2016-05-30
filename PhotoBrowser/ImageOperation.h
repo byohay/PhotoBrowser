@@ -3,17 +3,26 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "OperationParametersProvider.h"
+#import "OperationInput.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^ImagesCompletionBlock) (id<OperationInput>, NSError * _Nullable error);
+
 @protocol ImageOperation <NSObject>
 
-- (UIImage *)perform:(UIImage *)image;
+- (void)perform:(id<OperationInput>)input
+ uponCompletion:(ImagesCompletionBlock)completionBlock;
 
-/// Returns nil when no undo is available.
-- (UIImage *)performUndo:(UIImage *)image;
+- (void)performUndo:(id<OperationInput>)input
+     uponCompletion:(ImagesCompletionBlock)completionBlock;
 
-@property (readonly, nonatomic) NSString *operationUUID;
+@property (readonly, nonatomic) NSUUID *operationUUID;
+
+@property (readonly, nonatomic) id<OperationParametersProvider> parametersProvider;
+
+@property (readonly, nonatomic) BOOL isUndoAvailable;
 
 @end
 

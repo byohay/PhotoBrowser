@@ -1,11 +1,11 @@
 // Copyright (c) 2016 Lightricks. All rights reserved.
-// Created by Ben Yohay.
+// Created by .
 
-#import "OperationMetadata.h"
+#import "OperationHistoryCreator.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@implementation OperationMetadata
+@implementation OperationHistoryCreator
 
 @end
 

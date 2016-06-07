@@ -26,11 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoBrowser/OperationsManager.m"
-            timestampString = "485872924.650506"
+            timestampString = "485936802.686071"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31">
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "@interface OperationsManager()"
+            landmarkType = "2">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -39,14 +41,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PhotoBrowser/OperationsManager.m"
-            timestampString = "485936802.686071"
+            filePath = "PhotoBrowser/OperationHistory.h"
+            timestampString = "486826401.946544"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "@interface OperationsManager()"
-            landmarkType = "2">
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-isRedoAvailable:atPosition:"
+            landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OperationsManager()
 
+@property (readonly, nonatomic) NSUInteger cachedImagesInterval;
+
 @end
 
 @implementation OperationsManager
@@ -19,30 +21,27 @@ NS_ASSUME_NONNULL_BEGIN
 operationPosition:(OperationPosition *)currentPosition
 uponCompletion:(OperationPositionCompletionBlock)completionBlock {
   id<ImageOperation> operation = [operationsHistory at:currentPosition.operationIndex];
-  __block id<OperationInput> input;
-  
-  if(operation.isUndoAvailable) {
-      [operation performUndo:currentPosition.inputAfterOperation
-                      uponCompletion:^(id<OperationInput> inputAfterOperation, NSError * _Nullable error) {
-                        input = inputAfterOperation;
-      }];
+  __block NSArray<UIImage *> *input;
+  id<ImageOperation> previousOperation = [operationsHistory at:currentPosition.operationIndex - 1];
+  NSArray<UIImage *> *imagesAfterUndo;
+
+  if([previousOperation canOverrideOperation:operation]) {
+    imagesAfterUndo = [previousOperation perform:currentPosition.imagesAfterOperation];
   } else {
-    NSUInteger cachedInputIndex = (currentPosition.operationIndex / self.cachedImagesInterval);
-    input = [operationsHistory cachedInputAt:cachedInputIndex];
-    
+    NSArray<UIImage *> *cache = [operationsHistory cachedImagesClosestTo:currentPosition.operationIndex];
     for (;cachedInputIndex < currentPosition.operationIndex - 1; ++cachedInputIndex) {
       operation = [operationsHistory at:cachedInputIndex];
       
-      [operation perform:input
-          uponCompletion:^(id<OperationInput> inputAfterOperation, NSError * _Nullable error) {
-            input = inputAfterOperation;
+      [operation perform:cache
+          uponCompletion:^(NSArray<UIImage *> *imagesAfterOperation, NSError * _Nullable error) {
+            cache = inputAfterOperation;
           }];
     }
   }
   
   OperationPosition *position = [[OperationPosition alloc]
                                  initWithIndex:currentPosition.operationIndex - 1
-                                 input:input];
+                                 images:imagesAfterUndo];
   
   NSError *error;
   

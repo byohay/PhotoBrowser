@@ -19,9 +19,9 @@
 		B9391EE71CF47D0100A4DF83 /* OperationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9391EE61CF47D0100A4DF83 /* OperationsManager.m */; };
 		B9391EEA1CF4924F00A4DF83 /* VersionMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = B9391EE91CF4924F00A4DF83 /* VersionMetadata.m */; };
 		B9391EEE1CF5FB2600A4DF83 /* PhotoServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B9391EED1CF5FB2600A4DF83 /* PhotoServer.m */; };
+		B9D7329C1D043FC400AB42EB /* ToneMappingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = B9D7329B1D043FC400AB42EB /* ToneMappingOperation.m */; };
 		C9188F4B1CF720E6004A5101 /* OperationHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = C9188F4A1CF720E6004A5101 /* OperationHistory.m */; };
 		C982F0E41CFC32B600FE60EA /* OperationPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = C982F0E31CFC32B600FE60EA /* OperationPosition.m */; };
-		C982F0E71CFC3FDD00FE60EA /* OperationHistoryCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = C982F0E61CFC3FDD00FE60EA /* OperationHistoryCreator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,14 +48,12 @@
 		B9391EE91CF4924F00A4DF83 /* VersionMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionMetadata.m; sourceTree = "<group>"; };
 		B9391EEC1CF5FB2600A4DF83 /* PhotoServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoServer.h; sourceTree = "<group>"; };
 		B9391EED1CF5FB2600A4DF83 /* PhotoServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoServer.m; sourceTree = "<group>"; };
+		B9D7329A1D043FC400AB42EB /* ToneMappingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToneMappingOperation.h; sourceTree = "<group>"; };
+		B9D7329B1D043FC400AB42EB /* ToneMappingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToneMappingOperation.m; sourceTree = "<group>"; };
 		C9188F491CF720E6004A5101 /* OperationHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationHistory.h; sourceTree = "<group>"; };
 		C9188F4A1CF720E6004A5101 /* OperationHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationHistory.m; sourceTree = "<group>"; };
 		C982F0E21CFC32B600FE60EA /* OperationPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationPosition.h; sourceTree = "<group>"; };
 		C982F0E31CFC32B600FE60EA /* OperationPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationPosition.m; sourceTree = "<group>"; };
-		C982F0E51CFC3FDD00FE60EA /* OperationHistoryCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationHistoryCreator.h; sourceTree = "<group>"; };
-		C982F0E61CFC3FDD00FE60EA /* OperationHistoryCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationHistoryCreator.m; sourceTree = "<group>"; };
-		C982F0E81CFC5E0900FE60EA /* OperationParametersProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationParametersProvider.h; sourceTree = "<group>"; };
-		C982F0EB1CFC689000FE60EA /* OperationInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationInput.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +100,6 @@
 				B9391EDD1CF4779F00A4DF83 /* PhotoMetadata.m */,
 				B9391EDF1CF4790E00A4DF83 /* PhotosFetcher.h */,
 				C9188F491CF720E6004A5101 /* OperationHistory.h */,
-				C982F0E51CFC3FDD00FE60EA /* OperationHistoryCreator.h */,
-				C982F0E61CFC3FDD00FE60EA /* OperationHistoryCreator.m */,
 				C9188F4A1CF720E6004A5101 /* OperationHistory.m */,
 				B9391EE01CF4790E00A4DF83 /* PhotosFetcher.m */,
 				B9391EE21CF4796000A4DF83 /* UserMetadata.h */,
@@ -116,8 +112,8 @@
 				B9391EED1CF5FB2600A4DF83 /* PhotoServer.m */,
 				C982F0E21CFC32B600FE60EA /* OperationPosition.h */,
 				C982F0E31CFC32B600FE60EA /* OperationPosition.m */,
-				C982F0E81CFC5E0900FE60EA /* OperationParametersProvider.h */,
-				C982F0EB1CFC689000FE60EA /* OperationInput.h */,
+				B9D7329A1D043FC400AB42EB /* ToneMappingOperation.h */,
+				B9D7329B1D043FC400AB42EB /* ToneMappingOperation.m */,
 			);
 			path = PhotoBrowser;
 			sourceTree = "<group>";
@@ -202,12 +198,12 @@
 			files = (
 				C982F0E41CFC32B600FE60EA /* OperationPosition.m in Sources */,
 				B9391EE41CF4796000A4DF83 /* UserMetadata.m in Sources */,
-				C982F0E71CFC3FDD00FE60EA /* OperationHistoryCreator.m in Sources */,
 				B9391EEA1CF4924F00A4DF83 /* VersionMetadata.m in Sources */,
 				B9391EDE1CF4779F00A4DF83 /* PhotoMetadata.m in Sources */,
 				B9391EE11CF4790E00A4DF83 /* PhotosFetcher.m in Sources */,
 				B9391EC91CF4766A00A4DF83 /* ViewController.m in Sources */,
 				B9391EE71CF47D0100A4DF83 /* OperationsManager.m in Sources */,
+				B9D7329C1D043FC400AB42EB /* ToneMappingOperation.m in Sources */,
 				B9391EC61CF4766A00A4DF83 /* AppDelegate.m in Sources */,
 				C9188F4B1CF720E6004A5101 /* OperationHistory.m in Sources */,
 				B9391EEE1CF5FB2600A4DF83 /* PhotoServer.m in Sources */,

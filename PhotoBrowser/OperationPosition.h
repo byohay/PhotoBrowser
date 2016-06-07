@@ -2,17 +2,16 @@
 // Created by.
 
 #import <UIKit/UIKit.h>
-#import "OperationInput.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OperationPosition : NSObject
 
-- (instancetype)initWithIndex:(NSUInteger)position input:(id<OperationInput>)input;
+- (instancetype)initWithIndex:(NSUInteger)position images:(NSArray<UIImage *> *)imagesAfterOperation;
 
 @property (readonly, nonatomic) NSUInteger operationIndex;
 
-@property (readonly, nonatomic) id<OperationInput> inputAfterOperation;
+@property (readonly, nonatomic) NSArray<UIImage *> *imagesAfterOperation;
 
 @end
 

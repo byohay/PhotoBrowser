@@ -1,23 +1,31 @@
 // Copyright (c) 2016 Lightricks. All rights reserved.
 // Created by.
 
-#import "ImageOperation.h"
-
 #import <UIKit/UIKit.h>
+#import "ImageOperation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OperationHistory : NSObject
 
-- (instancetype)initWithOperations:(NSArray<id<ImageOperation>> *)operations
-                      cashedImages:(NSArray<id<OperationInput>> *)images
-                     originalImage:(id<OperationInput>)originalIinput;
+- (instancetype)initWithOriginalImages:(NSArray<UIImage *> *)originalImages;
 
-- (id<ImageOperation>)at:(NSUInteger)operationIndex;
+- (NSArray<UIImage *> *)versionAt:(NSUInteger)index;
 
-- (id<OperationInput>)cachedInputAt:(NSUInteger)cachedInputIndex;
+- (id<ImageOperation>)operationAt:(NSUInteger)operationIndex;
+
+/// May create cache.
+- (void)addOperation:(id<ImageOperation>)operation;
 
 - (NSUInteger)differenceWith:(OperationHistory *)history;
+
+- (BOOL)isUndoAvailable:(OperationHistory *)operationsHistory
+             atPosition:(NSUInteger)position;
+
+- (BOOL)isRedoAvailable:(OperationHistory *)operationsHistory
+             atPosition:(NSUInteger)position;
+
+@property (readonly, nonatomic) NSUInteger maximumCost;
 
 @end
 

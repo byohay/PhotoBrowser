@@ -28,22 +28,14 @@ operationPosition:(OperationPosition *)currentPosition
 operationPosition:(OperationPosition *)currentPosition
 uponCompletion:(OperationPositionCompletionBlock)completionBlock;
 
-- (BOOL)isUndoAvailable:(OperationHistory *)operationsHistory
-      operationPosition:(OperationPosition *)position;
-
-- (BOOL)isRedoAvailable:(OperationHistory *)operationsHistory
-      operationPosition:(OperationPosition *)position;
-
 /// Create a new OperationHistory with a new (possibly expanded) cache.
-// overites from position onwards
+// overwrites from position onwards
 - (void)addOperations:(NSArray<id<ImageOperation>> *)operations
             toHistory:(OperationHistory *)operationHistory
            atPosition:(OperationPosition *)position
        uponCompletion:(OperationHistoryCompletionBlock)completionBlock;
 
 @property (nonatomic) NSUInteger capacity;
-
-@property (nonatomic) NSUInteger cachedImagesInterval;
 
 @end
 

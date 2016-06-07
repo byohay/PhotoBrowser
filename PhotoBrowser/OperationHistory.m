@@ -2,6 +2,7 @@
 // Created by .
 
 #import "OperationHistory.h"
+#import "ImageOperation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -9,9 +10,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly, nonatomic) NSArray<id<ImageOperation>> *operations;
 
-@property (readonly, nonatomic) NSArray<id<OperationInput>> *cachedInputs;
+@property (readonly, nonatomic) NSArray<NSArray<UIImage *> *> *cachedImages;
 
-@property (readonly, nonatomic) id<OperationInput> originalInput;
+@property (readonly, nonatomic) NSArray<UIImage *> *originalInput;
+
+@property (readonly, nonatomic) NSUInteger costFromLastCache;
 
 @end
 

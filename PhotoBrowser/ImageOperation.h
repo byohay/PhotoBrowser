@@ -3,26 +3,18 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "OperationParametersProvider.h"
-#import "OperationInput.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^ImagesCompletionBlock) (id<OperationInput>, NSError * _Nullable error);
-
 @protocol ImageOperation <NSObject>
 
-- (void)perform:(id<OperationInput>)input
- uponCompletion:(ImagesCompletionBlock)completionBlock;
+- (NSArray<UIImage *> *)perform:(NSArray<UIImage *> *)inputImages;
 
-- (void)performUndo:(id<OperationInput>)input
-     uponCompletion:(ImagesCompletionBlock)completionBlock;
+- (BOOL)canOverrideOperation:(id<ImageOperation>)operation;
+
+@property (readonly, nonatomic) CGFloat cost;
 
 @property (readonly, nonatomic) NSUUID *operationUUID;
-
-@property (readonly, nonatomic) id<OperationParametersProvider> parametersProvider;
-
-@property (readonly, nonatomic) BOOL isUndoAvailable;
 
 @end
 
